@@ -8,15 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.gorillaz.clients.model.response.Client;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RestController
 @RequestMapping("/v1/client")
 public class ClientController {
 
+	@RequestMapping(method = RequestMethod.GET, path = "/test")
+	public ResponseEntity<String> test(){
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
+
+	
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(method = RequestMethod.POST, path = "/insert")
 	public Mono<Client> insertClient(@RequestBody Client client){
