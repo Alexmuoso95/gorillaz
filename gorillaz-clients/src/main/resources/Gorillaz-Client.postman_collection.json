@@ -138,6 +138,37 @@
 			"response": []
 		},
 		{
+			"name": "Swagger",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"alex\",\r\n    \"middle_name\":\"munoz\",\r\n    \"last_name\":\"osorio\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api-docs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Prometheus Metrics",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -158,14 +189,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/actuator",
+					"raw": "http://localhost:8888/actuator/prometheus",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8888",
 					"path": [
-						"actuator"
+						"actuator",
+						"prometheus"
 					]
 				}
 			},
@@ -214,6 +246,46 @@
 					"path": [
 						"actuator",
 						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swagger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/swagger-ui/index.html",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"swagger-ui",
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Swagger  UI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/v2/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"v2",
+						"api-docs"
 					]
 				}
 			},
