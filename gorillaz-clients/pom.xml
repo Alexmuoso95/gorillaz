@@ -6,8 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.8</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<version>2.5.9</version>
 	</parent>
 	<groupId>com.gorillaz</groupId>
 	<artifactId>gorillaz-clients</artifactId>
@@ -21,13 +20,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.9.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.9.2</version>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
