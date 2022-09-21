@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gorillaz.clients.entity.Client;
 import com.gorillaz.clients.service.ClientService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("/v1/client")
+@Api(value = "Client", description = "Clients Controller Application")
 public class ClientController {
 
 	@Autowired
@@ -30,6 +34,8 @@ public class ClientController {
 		return clientService.insertClient(client);
 	}
 
+	@ApiOperation(value = "Get Client by id")
+	@ApiResponse(code = 200, message = "OK", response = Client.class)
 	@RequestMapping(method = RequestMethod.GET, path = "/get/{id}")
 	public ResponseEntity<Client> getClient(@PathVariable Long id){
 		log.info("GET Client By Id Endpoint Executed");
