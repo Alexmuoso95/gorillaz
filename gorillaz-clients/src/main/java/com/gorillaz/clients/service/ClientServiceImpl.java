@@ -14,7 +14,6 @@ public class ClientServiceImpl  implements ClientService{
 	
 	@Override
 	public Long insertClient(Client client) {
-		return  clientCrudRepository.save(client).getId() ;
+		return clientCrudRepository.save(client).getId();
 	}
-
 }

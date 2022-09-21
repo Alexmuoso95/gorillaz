@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,7 +16,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
