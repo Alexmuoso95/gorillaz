@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,14 @@ public class ClientController {
 
 	@Autowired
 	private ClientService clientService;
+	
+	@PostMapping(path = "/insertTwentyUsers")
+	@ApiOperation(value = "Insert 20 Random clients into the data base")
+	@ApiResponse(code = 201, message = "CREATED", response = String.class)
+	public ResponseEntity<?> insertUndredClients(){
+		log.info("Insert 20 Clients - Endpoint Executed");
+		return new ResponseEntity<>(clientService.insertTwentyRandomClients(),HttpStatus.CREATED);
+	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/insert")
 	public Long insertClient(@RequestBody Client client){
