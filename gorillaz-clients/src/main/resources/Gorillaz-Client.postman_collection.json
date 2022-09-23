@@ -1,27 +1,83 @@
 {
 	"info": {
-		"_postman_id": "eddb70d4-c3ee-40fe-9d2f-cf68e56180cd",
+		"_postman_id": "7025117e-dce1-480b-a1b4-39de7a5a7e3a",
 		"name": "Gorillaz-Client",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6686058"
 	},
 	"item": [
 		{
-			"name": "Create Undred Clients",
+			"name": "Create Client",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "123",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "alex",
-							"type": "string"
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": null,\r\n    \"middleName\":\"munoz\",\r\n    \"lastName\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/v1/client/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"client",
+						"insert"
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Clients",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"alex\",\r\n    \"middle_name\":\"munoz\",\r\n    \"last_name\":\"osorio\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/v1/client/delete/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"client",
+						"delete",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Twenty Clients",
+			"request": {
+				"auth": {
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
@@ -45,39 +101,6 @@
 						"v1",
 						"client",
 						"insertTwentyUsers"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Client",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"alex\",\r\n    \"middle_name\":\"munoz\",\r\n    \"last_name\":\"osorio\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8081/v1/client/insert",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8081",
-					"path": [
-						"v1",
-						"client",
-						"insert"
 					]
 				}
 			},
