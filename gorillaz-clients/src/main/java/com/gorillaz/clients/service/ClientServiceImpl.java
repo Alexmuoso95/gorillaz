@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gorillaz.clients.entity.Client;
+import com.gorillaz.clients.mapper.ClientMapper;
 import com.gorillaz.clients.repository.ClientCrudRepository;
+import com.gorillaz.clients.request.ClientRequest;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,24 +21,27 @@ public class ClientServiceImpl  implements ClientService{
 	@Autowired
 	private ClientCrudRepository clientCrudRepository;
 	
+	@Autowired
+	private ClientMapper clientMapper;
+	
 	@Override
 	public List<Client> insertTwentyRandomClients() {
-		List<Client> clients = new ArrayList<>();
+		List<ClientRequest> clientRequests = new ArrayList<>();
         boolean useLetters = true;
-		while(clients.size() < 20) {
-		    Client client = new Client();
-	        client.setName(RandomStringUtils.random(6, useLetters, false)); 
-	        client.setMiddleName(RandomStringUtils.random(3, useLetters, false)); 
-	        client.setLastName(RandomStringUtils.random(3, useLetters, false)); 
-	        clients.add(client);
-			log.info("Insert 20 Clients - User Number : {} created",clients.size());
+		while(clientRequests.size() < 20) {
+			ClientRequest clientRequest = new ClientRequest();
+			clientRequest.setName(RandomStringUtils.random(6, useLetters, false)); 
+			clientRequest.setMiddleName(RandomStringUtils.random(3, useLetters, false)); 
+			clientRequest.setLastName(RandomStringUtils.random(3, useLetters, false)); 
+			clientRequests.add(clientRequest);
+			log.info("Insert 20 Clients - User Number : {} created",clientRequests.size());
 		}
-		return (List<Client>) clientCrudRepository.saveAll(clients);
+		return (List<Client>) clientCrudRepository.saveAll(clientMapper.mapClientRequest(clientRequests));
 	}
 	
 	@Override
-	public Long insertClient(Client client) {
-		return clientCrudRepository.save(client).getId();
+	public Long insertClient(ClientRequest clientRequest) {
+		return clientCrudRepository.save(clientMapper.mapClient(clientRequest)).getId();
 	}
 
 	@Override

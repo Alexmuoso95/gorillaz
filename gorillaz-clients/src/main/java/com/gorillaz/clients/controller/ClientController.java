@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gorillaz.clients.entity.Client;
+import com.gorillaz.clients.request.ClientRequest;
 import com.gorillaz.clients.service.ClientService;
 
 import io.swagger.annotations.Api;
@@ -31,14 +32,14 @@ public class ClientController {
 	
 	@PostMapping(path = "/insertTwentyUsers")
 	@ApiOperation(value = "Insert 20 Random clients into the data base")
-	@ApiResponse(code = 201, message = "CREATED", response = String.class)
+	@ApiResponse(code = 201, message = "CREATED", response = Client.class)
 	public ResponseEntity<?> insertUndredClients(){
 		log.info("Insert 20 Clients - Endpoint Executed");
 		return new ResponseEntity<>(clientService.insertTwentyRandomClients(),HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/insert")
-	public Long insertClient(@RequestBody Client client){
+	public Long insertClient(@RequestBody ClientRequest client){
 		log.info("Insert Client Endpoint Executed");
 		return clientService.insertClient(client);
 	}

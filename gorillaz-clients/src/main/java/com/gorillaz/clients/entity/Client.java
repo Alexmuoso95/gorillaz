@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -17,12 +19,11 @@ import lombok.ToString;
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id ;
-	@Column(name="name")
+	private Long id;
+	@Column(name = "name")
 	private String name;
-	@Column(name="middle_name")
+	@Column(name = "middle_name")
 	private String middleName;
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
-
 }
