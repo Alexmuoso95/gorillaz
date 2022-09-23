@@ -6,6 +6,84 @@
 	},
 	"item": [
 		{
+			"name": "Create Undred Clients",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "alex",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/v1/client/insertTwentyUsers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"client",
+						"insertTwentyUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Client",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"alex\",\r\n    \"middle_name\":\"munoz\",\r\n    \"last_name\":\"osorio\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/v1/client/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"client",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Client",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -39,15 +117,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/v1/client/1",
+					"raw": "http://localhost:8081/v1/client/get/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"v1",
 						"client",
+						"get",
 						"1"
 					]
 				}
@@ -88,81 +167,17 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/v1/client/get/all",
+					"raw": "http://localhost:8081/v1/client/get/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"v1",
 						"client",
 						"get",
 						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Client",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"alex\",\r\n    \"middle_name\":\"munoz\",\r\n    \"last_name\":\"osorio\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/v1/client/insert",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"v1",
-						"client",
-						"insert"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Swagger",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"alex\",\r\n    \"middle_name\":\"munoz\",\r\n    \"last_name\":\"osorio\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8888/api-docs",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8888",
-					"path": [
-						"api-docs"
 					]
 				}
 			},
@@ -189,12 +204,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/actuator/prometheus",
+					"raw": "http://localhost:8081/actuator/prometheus",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"actuator",
 						"prometheus"
@@ -210,7 +225,19 @@
 			},
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "alex",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [
@@ -237,12 +264,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8888/actuator/health",
+					"raw": "http://localhost:8081/actuator/health",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"actuator",
 						"health"
@@ -252,7 +279,7 @@
 			"response": []
 		},
 		{
-			"name": "Swagger",
+			"name": "Swagger UI",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -272,17 +299,32 @@
 			"response": []
 		},
 		{
-			"name": "Swagger  UI",
+			"name": "Swagger  Docs",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "alex",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8888/v2/api-docs",
+					"raw": "http://localhost:8081/v2/api-docs",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8888",
+					"port": "8081",
 					"path": [
 						"v2",
 						"api-docs"
