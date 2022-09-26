@@ -23,8 +23,8 @@ public class GorillazInterceptor implements AsyncHandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		log.info("::::::::: INTERCEPTOR - EXECUTED :::::::::::" );
 		if(request.getRequestURI().contains(CREATE_CLIENT_ENDPOINT)) {
+			log.info(":::::: INTERCEPTOR - v1/client/insert ::::::" );
 			metrics.incrementRequest(CREATE_CLIENT_ENDPOINT);
 		}
 		return true;

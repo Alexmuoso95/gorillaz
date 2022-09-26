@@ -19,11 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebMvc
 @RestControllerAdvice
 public class ControllerExceptions {
-	@ExceptionHandler({ RuntimeException.class })
-	public ResponseEntity<?> handledExceptions(RuntimeException ex) {
-		log.error(" ERROR , ERROR , ERROR " , ex);
-		return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//	@ExceptionHandler({ RuntimeException.class })
+//	public ResponseEntity<?> handledExceptions(RuntimeException ex) {
+//		log.error(" ERROR , ERROR , ERROR " , ex);
+//		return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler({ MethodArgumentNotValidException.class })
 	public Map<String,String> handledBadRequestExceptions(MethodArgumentNotValidException ex) {

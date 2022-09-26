@@ -10,9 +10,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import com.gorillaz.clients.entity.Client;
-import com.gorillaz.clients.mapper.ClientMapper;
 import com.gorillaz.clients.repository.ClientCrudRepository;
 import com.gorillaz.clients.request.ClientRequest;
+import com.gorillaz.clients.transform.ClientMapper;
 
 import lombok.extern.slf4j.Slf4j;
 

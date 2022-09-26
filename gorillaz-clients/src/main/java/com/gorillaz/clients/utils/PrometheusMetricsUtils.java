@@ -19,13 +19,13 @@ public class PrometheusMetricsUtils {
 	private final Counter requestCounter ;
 	
 	public PrometheusMetricsUtils(MeterRegistry registry, @Qualifier("requestCounter") Counter requestCounter) {
-		log.info("::::::::: METRICS - INITIALIZED ::::::: ");
+		log.info(":::::: METRICS - INITIALIZED ::::::: ");
 		this.registry = registry;
 		this.requestCounter = requestCounter;
 	}
 	
 	public void incrementRequest(String endpoint) {
-		log.info("::::::::: METRICS - REQUEST COUNTER INCREMENTED::::::: ");
+		log.info(":::::: METRICS - REQUEST COUNTER INCREMENTED ::::::: ");
 		this.registry.counter(MetricsConfig.REQUEST_COUNTER, MetricsConfig.ENDPOINT_TAG, endpoint).increment();
 	}
 }

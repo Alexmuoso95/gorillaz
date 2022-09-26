@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class ClientRequest {
-	
 	@NotBlank
 	private String name;
 	@NotBlank
