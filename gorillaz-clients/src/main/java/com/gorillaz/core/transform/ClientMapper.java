@@ -1,6 +1,5 @@
 package com.gorillaz.core.transform;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class ClientMapper {
 		client.setName(clientRequest.getName());
 		client.setLastName(clientRequest.getLastName());
 		client.setEmail(clientRequest.getEmail());
-		client.setPhoneNumber(new BigInteger(clientRequest.getPhoneNumber()) );
+		client.setPhoneNumber(clientRequest.getPhoneNumber());
 		client.setCreateAt(dtf.format(localDate));
 		return client;
 	}
@@ -33,7 +32,7 @@ public class ClientMapper {
 			client.setName(clientRequest.getName());
 			client.setLastName(clientRequest.getLastName());
 			client.setEmail(clientRequest.getEmail());
-			client.setPhoneNumber(new BigInteger(clientRequest.getPhoneNumber()));
+			client.setPhoneNumber(clientRequest.getPhoneNumber());
 			client.setCreateAt(dtf.format(localDate));
 			clients.add(client);
 		});

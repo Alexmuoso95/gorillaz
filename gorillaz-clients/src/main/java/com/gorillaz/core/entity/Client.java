@@ -1,7 +1,5 @@
 package com.gorillaz.core.entity;
 
-import java.math.BigInteger;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +26,7 @@ public class Client {
 	@Column(name = "email")
 	private String email;
 	@Column(name = "phone_number")
-	private BigInteger phoneNumber;
+	private String phoneNumber;
 	@Column(name = "creat_at")
 	private String createAt;
 }

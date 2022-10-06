@@ -1,6 +1,5 @@
 package com.gorillaz.core.service;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +65,7 @@ public class ClientServiceImpl implements ClientService {
 			client.setName(clientRequest.getName());
 			client.setLastName(clientRequest.getLastName());
 			client.setEmail(clientRequest.getEmail());
-			client.setPhoneNumber(new BigInteger(clientRequest.getPhoneNumber()));
+			client.setPhoneNumber(clientRequest.getPhoneNumber());
 		}
 		return clientCrudRepository.save(client);
 	}
