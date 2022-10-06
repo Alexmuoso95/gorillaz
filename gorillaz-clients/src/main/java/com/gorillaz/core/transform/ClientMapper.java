@@ -1,5 +1,8 @@
 package com.gorillaz.core.transform;
 
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +13,17 @@ import com.gorillaz.core.request.ClientRequest;
 
 @Component
 public class ClientMapper {
-	public Client mapClient(ClientRequest clientRequest) {
+	
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+	LocalDate localDate = LocalDate.now();
+	
+	public Client mapClientRequest(ClientRequest clientRequest) {
 		Client client = new Client();
 		client.setName(clientRequest.getName());
-		client.setMiddleName(clientRequest.getMiddleName());
 		client.setLastName(clientRequest.getLastName());
+		client.setEmail(clientRequest.getEmail());
+		client.setPhoneNumber(new BigInteger(clientRequest.getPhoneNumber()) );
+		client.setCreateAt(dtf.format(localDate));
 		return client;
 	}
 	public List<Client> mapClientRequest(List<ClientRequest> clientRequests) {
@@ -22,8 +31,10 @@ public class ClientMapper {
 		clientRequests.forEach(clientRequest -> {
 			Client client = new Client();
 			client.setName(clientRequest.getName());
-			client.setMiddleName(clientRequest.getMiddleName());
 			client.setLastName(clientRequest.getLastName());
+			client.setEmail(clientRequest.getEmail());
+			client.setPhoneNumber(new BigInteger(clientRequest.getPhoneNumber()));
+			client.setCreateAt(dtf.format(localDate));
 			clients.add(client);
 		});
 		return clients;

@@ -7,11 +7,11 @@ import com.gorillaz.core.request.ClientRequest;
 
 public interface ClientService {
 	public List<Client> insertTwentyRandomClients();
-	public Long insertClient(ClientRequest client);
+	public Long createClient(ClientRequest client);
 	public Client getClient(Long id);
 	public List<Client> getClients();
-	public Client updateClient(Client client, Long id);
-	public Client deleteClient(Long id);
+	public Client updateClient(ClientRequest client, Long id);
+	public void deleteClient(Long id);
 	public void deleteAll();
 
 }

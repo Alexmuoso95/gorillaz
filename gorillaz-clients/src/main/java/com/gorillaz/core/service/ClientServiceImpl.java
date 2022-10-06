@@ -1,5 +1,6 @@
 package com.gorillaz.core.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,10 @@ public class ClientServiceImpl implements ClientService {
 		boolean useLetters = true;
 		while (clientRequests.size() < 20) {
 			ClientRequest clientRequest = new ClientRequest();
-			clientRequest.setName(RandomStringUtils.random(6, useLetters, false));
-			clientRequest.setMiddleName(RandomStringUtils.random(3, useLetters, false));
+			clientRequest.setName(RandomStringUtils.random(3, useLetters, false));
 			clientRequest.setLastName(RandomStringUtils.random(3, useLetters, false));
+			clientRequest.setEmail(RandomStringUtils.random(3, useLetters, false)+"@"+RandomStringUtils.random(3, useLetters, false)+".com");
+			clientRequest.setPhoneNumber("3121234455");
 			clientRequests.add(clientRequest);
 			log.info("Insert 20 Clients - User Number : {} created", clientRequests.size());
 		}
@@ -43,8 +45,8 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Long insertClient(ClientRequest clientRequest) {
-		return clientCrudRepository.save(clientMapper.mapClient(clientRequest)).getId();
+	public Long createClient(ClientRequest clientRequest) {
+		return clientCrudRepository.save(clientMapper.mapClientRequest(clientRequest)).getId();
 	}
 
 	@Override
@@ -58,15 +60,23 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public Client updateClient(Client client, Long id) {
-		client.setId(clientCrudRepository.findById(id).get().getId());
+	public Client updateClient(ClientRequest clientRequest, Long id) {
+		Client client =  clientCrudRepository.findById(id).orElse(null);
+		if(client!=null) {
+			client.setName(clientRequest.getName());
+			client.setLastName(clientRequest.getLastName());
+			client.setEmail(clientRequest.getEmail());
+			client.setPhoneNumber(new BigInteger(clientRequest.getPhoneNumber()));
+		}
 		return clientCrudRepository.save(client);
 	}
 
 	@Override
-	public Client deleteClient(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteClient(Long id) {
+		Client client =  clientCrudRepository.findById(id).orElse(null);
+		if(client!=null) {
+			clientCrudRepository.delete(client);
+		}
 	}
 	
 	@Async
