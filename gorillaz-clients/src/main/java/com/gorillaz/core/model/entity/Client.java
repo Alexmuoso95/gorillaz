@@ -1,20 +1,22 @@
-package com.gorillaz.core.entity;
+package com.gorillaz.core.model.entity;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
+@Table(name = "clients")
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,6 +29,14 @@ public class Client {
 	private String email;
 	@Column(name = "phone_number")
 	private String phoneNumber;
-	@Column(name = "creat_at")
-	private String createAt;
+	@Column(name = "create_at")
+	@Temporal(TemporalType.DATE)
+	private Date createAt;
+	@Column(name = "photo")
+	private String photo;
+	
+	@PrePersist
+	public void prePersist() {
+		createAt = new Date();
+	}
 }

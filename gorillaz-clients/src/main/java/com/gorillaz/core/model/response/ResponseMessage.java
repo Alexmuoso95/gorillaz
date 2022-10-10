@@ -1,4 +1,4 @@
-package com.gorillaz.core.response;
+package com.gorillaz.core.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.gorillaz.core.request;
+package com.gorillaz.core.model.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,17 +10,17 @@ import lombok.Data;
 @Data
 public class ClientRequest {
 	
-	@NotNull(message = "Nombre no puese estar vacio")
-	@NotBlank(message = "Nombre no puese estar vacio")
+	@NotNull(message = "Nombre no puede estar vacio")
+	@NotBlank(message = "Nombre no puede estar vacio")
 	private String name;
 	
-	@NotNull(message = "Apellidos no puese estar vacio")
-	@NotBlank(message = "Apellidos no puese estar vacio")
+	@NotNull(message = "Apellidos no puede estar vacio")
+	@NotBlank(message = "Apellidos no puede estar vacio")
 	private String lastName;
 
 	@Email(message = "Email debe contener  @ y .com .mx etc..")
 	private String email;
 
-	@Pattern(regexp = "[0-9]+", message = "Telefono solo acepta numeros")
+	@Pattern(regexp = "[0-9]+", message = "El Telefono solo acepta numeros")
 	private String phoneNumber;
 }
