@@ -1,4 +1,4 @@
-package com.gorillaz.core.request;
+package com.gorillaz.core.model.request;
 
 import lombok.Data;
 
