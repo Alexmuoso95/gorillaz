@@ -21,9 +21,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET,"/v1/clients/page/**").permitAll()
-		.antMatchers(HttpMethod.POST, "/v1/clients").hasRole("ADMIN")//ROLE_ is set automatically
-		.anyRequest().authenticated();
+//		.antMatchers(HttpMethod.GET,"/v1/clients/page/**").hasRole("ADMIN")
+//		.antMatchers(HttpMethod.POST, "/v1/clients").hasRole("ADMIN")//ROLE_ is set automatically
+		.anyRequest().permitAll();
+		//.authenticated();
 	}
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {

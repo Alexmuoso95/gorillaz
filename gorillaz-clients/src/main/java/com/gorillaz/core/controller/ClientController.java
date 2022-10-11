@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.gorillaz.core.model.entity.Client;
 import com.gorillaz.core.model.request.ClientRequest;
@@ -23,6 +24,7 @@ import com.gorillaz.core.model.response.ResponseMessage;
 import com.gorillaz.core.service.ClientService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -40,7 +42,9 @@ public class ClientController {
 	public ResponseEntity<?> insertUndredClients() throws Exception{
 		return new ResponseEntity<>(clientService.insertTwentyRandomClients(),HttpStatus.CREATED);
 	}
+	
 	@GetMapping
+	@ApiOperation(value = "Get Client by id")
 	public ResponseEntity<?> getClients(){
 		return new ResponseEntity<>(clientService.getClients(),HttpStatus.OK);
 	}

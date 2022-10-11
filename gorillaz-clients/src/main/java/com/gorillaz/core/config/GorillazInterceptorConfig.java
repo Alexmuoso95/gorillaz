@@ -18,7 +18,6 @@ public class GorillazInterceptorConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		log.info("::::::::::: INTERCEPTOR - CREATED  :::::::::::" );
 		registry.addInterceptor(interceptor);
 	}
 }

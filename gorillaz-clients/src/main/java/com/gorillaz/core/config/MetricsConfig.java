@@ -26,7 +26,6 @@ public class MetricsConfig {
 	//  Create Counter Bean
 	@Bean(name = "requestCounter")
 	public Counter requestCounter () {
-		log.info("::::::::: METRICS - CREATING BEAN REQUEST COUNTER ::::::: ");
 		return this.meterRegistry.counter(REQUEST_COUNTER, ENDPOINT_TAG, "/");
 	}
 }
