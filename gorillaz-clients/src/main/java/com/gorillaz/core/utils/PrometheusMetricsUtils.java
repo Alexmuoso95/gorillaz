@@ -7,7 +7,6 @@ import com.gorillaz.core.config.MetricsConfig;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
-import lombok.extern.slf4j.Slf4j;
 
 @Component
 public class PrometheusMetricsUtils {

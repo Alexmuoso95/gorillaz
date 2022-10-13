@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.gorillaz.core.model.entity.Client;
 import com.gorillaz.core.model.request.ClientRequest;
@@ -51,7 +50,7 @@ public class ClientController {
 	
 	@GetMapping("/page/{page}")
 	public ResponseEntity<?> getClients(@PathVariable Integer page){
-		return new ResponseEntity<>(clientService.getClients(PageRequest.of(page, 4)),HttpStatus.OK);
+		return new ResponseEntity<>(clientService.getClients(PageRequest.of(page, 8)),HttpStatus.OK);
 	}
 	
 //	@PostMapping("/upload")

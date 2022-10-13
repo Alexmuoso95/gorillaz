@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
 import com.gorillaz.core.model.entity.UserDTO;
-import com.gorillaz.core.service.UserServiceImpl;
+import com.gorillaz.core.service.impl.UserServiceImpl;
 
 @Component
 public class AdditionalToken implements TokenEnhancer{

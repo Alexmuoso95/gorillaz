@@ -1,4 +1,4 @@
-package com.gorillaz.core.service;
+package com.gorillaz.core.service.impl;
 
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.gorillaz.core.service;
+package com.gorillaz.core.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.gorillaz.core.model.entity.Client;
 import com.gorillaz.core.model.request.ClientRequest;
 import com.gorillaz.core.repository.ClientRepository;
+import com.gorillaz.core.service.ClientService;
 import com.gorillaz.core.transform.ClientMapper;
 
 import lombok.extern.slf4j.Slf4j;

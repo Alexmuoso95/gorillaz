@@ -5,8 +5,17 @@ INSERT INTO clients (id,name, last_name, email, phone_number, create_at ) VALUES
 
 INSERT INTO users (id , name , password, status ) VALUES (1,'alex','$2a$10$CvY4CmEClKWTWFU0xEBj2O9jEzXwT.9INQq3uHi2vMKRtJRtsqDBG',1);
 INSERT INTO users (id , name , password, status ) VALUES (2,'yare','$2a$10$gqNNNd0tVcxrKqStuzIC0OBARJoC1WI1GmLSrWrKjvEuaL7W001CO',1);
+
 INSERT INTO roles (id , name ) VALUES (1,'ROLE_ADMIN');
 INSERT INTO roles (id , name ) VALUES (2,'ROLE_USER');
+
 INSERT INTO users_roles (user_id , role_id ) VALUES (1,1);
 INSERT INTO users_roles (user_id , role_id ) VALUES (2,2);
 INSERT INTO users_roles (user_id , role_id ) VALUES (1,2);
+
+INSERT INTO products (id,name,price,description) VALUES (20,'Lavado de interiores','','Nos aseguramos que su auto quede impecable');
+INSERT INTO products (id,name,price,description) VALUES (21,'Lavado de exteriores','','');
+INSERT INTO products (id,name,price,description) VALUES (22,'Enserado','','');
+INSERT INTO products (id,name,price,description) VALUES (23,'Pintura','','');
+INSERT INTO products (id,name,price,description) VALUES (24,'Restauracion','','');
+INSERT INTO products (id,name,price,description) VALUES (25,'Retoques','','');
