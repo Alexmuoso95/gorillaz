@@ -50,7 +50,7 @@ public class ClientController {
 	
 	@GetMapping("/page/{page}")
 	public ResponseEntity<?> getClients(@PathVariable Integer page){
-		return new ResponseEntity<>(clientService.getClients(PageRequest.of(page, 8)),HttpStatus.OK);
+		return new ResponseEntity<>(clientService.getClients( PageRequest.of(page, 8)),HttpStatus.OK);
 	}
 	
 //	@PostMapping("/upload")
