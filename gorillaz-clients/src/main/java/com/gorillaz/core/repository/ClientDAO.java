@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.gorillaz.core.model.entity.Client;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Long> {
+public interface ClientDAO extends JpaRepository<Client, Long> {
 
 
 }
