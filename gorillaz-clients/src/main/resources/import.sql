@@ -19,6 +19,8 @@ INSERT INTO address (id,street, colony, num_ext, num_int, postal_code,client_id 
 INSERT INTO address (id,street, colony, num_ext, num_int, postal_code,client_id ) VALUES (102,'AV.3','Villa','567', '', '28017',102);
 INSERT INTO address (id,street, colony, num_ext, num_int, postal_code,client_id ) VALUES (103,'AV.4','Padros','789', '', '28017',103);
 
+INSERT INTO invoices (id,name, fiscal_taxes_registry, fical_regimen, description, create_at,client_id ) VALUES (100,'FACTURA','1010','1111', 'VENTA DE ARTI-CULOS', '2018-03-01',100);
+
 INSERT INTO products (id,name,price,description) VALUES (20,'Lavado de interiores','','Nos aseguramos que su auto quede impecable');
 INSERT INTO products (id,name,price,description) VALUES (21,'Lavado de exteriores','','');
 INSERT INTO products (id,name,price,description) VALUES (22,'Enserado','','');

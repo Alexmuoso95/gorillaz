@@ -11,7 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 public enum ExpandEnum {
 
 	NOEXPAND("empty"),
-	CLIENT_ADDRESSES("client.addresses");
+	CLIENT_ADDRESSES("client.addresses"),
+	CLIENT_INVOICES("client.invoices");
 	
 	private String value;
 	

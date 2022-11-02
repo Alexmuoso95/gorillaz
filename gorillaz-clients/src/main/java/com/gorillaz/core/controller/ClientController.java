@@ -2,6 +2,8 @@ package com.gorillaz.core.controller;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -10,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,14 +42,27 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(origins= {"http://localhost:4200"})
 @Api(value = "Client Api")
 public class ClientController {
-
+	
 	@Autowired
 	private ClientService clientService;
 	
-	@Secured({"ROLE_ADMIN"})
-	@PostMapping("/insertTwentyUsers")
-	public ResponseEntity<?> insertUndredClients() throws Exception{
-		return new ResponseEntity<>(clientService.insertTwentyRandomClients(),HttpStatus.CREATED);
+//	@Secured({"ROLE_ADMIN"})
+	@GetMapping(value =  "/{clientId}",produces = "application/json")
+	public ResponseEntity<ClientResponse> getClient(@PathVariable Long clientId,
+		@Pattern(regexp="^(?:client.addresses)*$")@ApiParam(value="Expand for clients")@RequestParam(value="expand", required = false) String expand)
+	{
+		log.info(":: GET-CLIENT ");
+		List<ExpandEnum> expandsEnum = ApiHelper.buildExpandEnumCollection(expand);
+		ClientResponse clientResponse = clientService.getClient(clientId,expandsEnum);
+		return new ResponseEntity<>(clientResponse,HttpStatus.OK);
+	}
+	
+//	@Secured({"ROLE_ADMIN"})
+	@PutMapping(value =  "/{clientId}",produces = "application/json")
+	public ResponseEntity<ClientResponse> updateClientAndAddress(@PathVariable Long clientId, @Valid @RequestBody ClientRequest client ){
+		log.info(":: UC - clienId [{}]" , clientId);
+		ClientResponse c=clientService.updateClientAndAddresses(client,clientId);
+		return new ResponseEntity<>(c,HttpStatus.OK);
 	}
 	
 	@GetMapping
@@ -68,28 +84,6 @@ public class ClientController {
 	@PostMapping
 	public ResponseEntity<?> createClient( @Valid @RequestBody ClientRequest client){
 		return new ResponseEntity<>(clientService.createClient(client),HttpStatus.CREATED);
-	}
-
-	
-	@GetMapping(value =  "/{id}",produces = "application/json")
-	public ResponseEntity<?> getClient(@PathVariable Long id, 
-										@Pattern(regexp="^(?:client.addresses)*$")
-											@ApiParam(value="Expand for clients")
-												@RequestParam(value="expand", required = false) String expand){
-		log.info("Controller Get Client");
-		List<ExpandEnum> expandsEnum = ApiHelper.buildExpandEnumCollection(expand);
-		ClientResponse clientResponse = clientService.getClient(id,expandsEnum);
-//		if(clientResponse==null) {
-//			 return new ResponseEntity<>(new ResponseMessage("El cliente con el id ".concat(id.toString()).concat(" no existe."),404),HttpStatus.NOT_FOUND);
-//		}
-		log.info("Controller Client found {} " , clientResponse);
-		return new ResponseEntity<>(clientResponse,HttpStatus.OK);
-	}
-	
-	@Secured({"ROLE_ADMIN"})
-	@PutMapping("/{id}")
-	public ResponseEntity<?> updateClient(@Valid @RequestBody ClientRequest client, @PathVariable Long id){
-		return new ResponseEntity<>(clientService.updateClient(client,id),HttpStatus.OK);
 	}
 
 

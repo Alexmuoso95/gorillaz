@@ -1,4 +1,4 @@
-package com.gorillaz.core.exceptions;
+package com.gorillaz.core.exceptions.security;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.gorillaz.core.model.entity.Address;
+import com.gorillaz.core.model.entity.Invoice;
 
 import lombok.Data;
 
@@ -18,4 +19,6 @@ public class ClientResponse {
 	private Date createAt;
 	private String photo;
 	private List<Address> addresses = new ArrayList<>();
+	private List<Invoice> invoices = new ArrayList<>();
+
 }

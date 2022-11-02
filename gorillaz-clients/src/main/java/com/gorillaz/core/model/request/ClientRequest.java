@@ -1,9 +1,13 @@
 package com.gorillaz.core.model.request;
 
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import com.gorillaz.core.model.entity.Address;
 
 import lombok.Data;
 
@@ -23,4 +27,6 @@ public class ClientRequest {
 
 	@Pattern(regexp = "[0-9]+", message = "El Telefono solo acepta numeros")
 	private String phoneNumber;
+	
+	private List<Address> addresses;
 }

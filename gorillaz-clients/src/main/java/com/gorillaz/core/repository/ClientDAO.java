@@ -8,5 +8,4 @@ import com.gorillaz.core.model.entity.Client;
 @Repository
 public interface ClientDAO extends JpaRepository<Client, Long> {
 
-
 }

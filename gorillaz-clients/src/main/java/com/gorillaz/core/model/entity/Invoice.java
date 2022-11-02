@@ -38,6 +38,10 @@ public class Invoice {
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
+	@Column(name = "client_id")
+	private Long clientId;
+
+	
 //	
 //	@NotNull
 //	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

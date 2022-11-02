@@ -2,6 +2,8 @@ package com.gorillaz.core.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,16 +13,15 @@ import com.gorillaz.core.model.request.ClientRequest;
 import com.gorillaz.core.model.response.ClientResponse;
 
 public interface ClientService {
-	public List<Client> insertTwentyRandomClients();
 	public Long createClient(ClientRequest client);
 	
 //	public boolean uploadFile(MultipartFile file , Long id);
 
-	public ClientResponse getClient(Long id,List<ExpandEnum> expands);
+	public ClientResponse getClient(Long clienId,List<ExpandEnum> expands) throws EntityNotFoundException;
 	public Page<Client> getClients(Pageable pageable);
 	public List<Client> getClients();
-	public Client updateClient(ClientRequest client, Long id);
-	public void deleteClient(Long id);
+	public ClientResponse updateClientAndAddresses(ClientRequest client, Long clienId);
+	public void deleteClient(Long clienId);
 	public void deleteAll();
 	
 	

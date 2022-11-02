@@ -1,14 +1,12 @@
 package com.gorillaz.core.exceptions;
 
-import org.springframework.http.HttpStatus;
-
 public class ErrorResponse {
 
 	private String message;
-	private HttpStatus code;
+	private Integer code;
 	private String moreInfo;
 
-	public ErrorResponse(String message, HttpStatus code, String moreInfo) {
+	public ErrorResponse(String message, Integer code, String moreInfo) {
 		this.message = message;
 		this.code = code;
 		this.moreInfo = moreInfo;
@@ -19,7 +17,7 @@ public class ErrorResponse {
 		return message;
 	}
 
-	public HttpStatus getCode() {
+	public Integer getCode() {
 
 		return code;
 	}

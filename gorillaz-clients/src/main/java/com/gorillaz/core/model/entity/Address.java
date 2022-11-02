@@ -36,8 +36,6 @@ public class Address {
 	@NotNull
 	@Column(name = "num_ext")
 	private String numExt ;
-	@NotBlank
-	@NotNull
 	@Column(name = "num_int")
 	private String numInt ;
 	@NotBlank

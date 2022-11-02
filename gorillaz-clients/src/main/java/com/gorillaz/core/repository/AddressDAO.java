@@ -10,4 +10,5 @@ import com.gorillaz.core.model.entity.Address;
 public interface AddressDAO extends JpaRepository<Address,Long>{
 	
 	public List<Address> findAllByClientId(Long clientId);
+	void deleteByClientId(Long clientId);
 }
