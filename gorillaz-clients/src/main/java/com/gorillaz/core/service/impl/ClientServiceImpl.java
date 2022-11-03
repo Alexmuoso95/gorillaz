@@ -4,15 +4,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.gorillaz.core.enums.ExpandEnum;
 import com.gorillaz.core.exceptions.db.DBExceptions;
+import com.gorillaz.core.exceptions.webclient.WebClientExceptions;
 import com.gorillaz.core.model.entity.Address;
 import com.gorillaz.core.model.entity.Client;
 import com.gorillaz.core.model.entity.Invoice;
@@ -26,6 +30,8 @@ import com.gorillaz.core.transform.ClientMapper;
 import com.gorillaz.core.web.WebClientService;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
@@ -45,7 +51,7 @@ public class ClientServiceImpl implements ClientService {
 	private ClientMapper clientMapper;
 
 	@Autowired
-	private WebClientService webClient;
+	WebClientService webClientService;
 	
 	@Override
 	public Long createClient(ClientRequest clientRequest) {
@@ -53,7 +59,7 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public ClientResponse getClient(Long clientId, List<ExpandEnum> expands) throws DBExceptions{
+	public ClientResponse getClient(Long clientId, List<ExpandEnum> expands) throws DBExceptions,WebClientExceptions{
 		ClientResponse clientResponse = new ClientResponse();
 		Client client = clientDao.findById(clientId).orElseThrow(() -> new DBExceptions("Client id : " + clientId + " doesn't exist"));
 		log.info(":: GC - Client Id : {} found ", clientId);
@@ -67,7 +73,7 @@ public class ClientServiceImpl implements ClientService {
 			List<Invoice> invoices = invoiceDao.findAllByClientId(clientId);
 			clientMapper.mapClientInvoices(clientResponse, invoices);
 		}
-		List<Client> clients = webClient.getClients();
+		clientResponse.setName(webClientService.getClientsEncryperCall(client).get(0).getName());
 		return clientResponse;
 	}
 

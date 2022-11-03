@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.gorillaz.core.exceptions.db.DBExceptions;
+import com.gorillaz.core.exceptions.webclient.WebClientExceptions;
 
 
 @EnableWebMvc
@@ -36,4 +39,14 @@ public class ControllerExceptions {
 		return new ErrorResponse(ex.getMessage(), 404, null);
 	}
 	
+	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+	@ExceptionHandler({ BadCredentialsException.class })
+	public ErrorResponse handledBadRequestExceptions(BadCredentialsException ex) {
+		return new ErrorResponse(ex.getMessage(), 401, ex.getLocalizedMessage());
+	}
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler({ WebClientExceptions.class })
+	public ErrorResponse handledBadRequestExceptions(WebClientExceptions ex) {
+		return new ErrorResponse(ex.getMessage(), 500, ex.getLocalizedMessage());
+	}
 }
