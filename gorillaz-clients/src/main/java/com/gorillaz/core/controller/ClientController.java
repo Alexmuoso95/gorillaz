@@ -2,8 +2,6 @@ package com.gorillaz.core.controller;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 
@@ -12,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gorillaz.core.enums.ExpandEnum;
+import com.gorillaz.core.kafka.ClientsKafkaConsumer;
+import com.gorillaz.core.kafka.ClientsKafkaProducer;
 import com.gorillaz.core.model.request.ClientRequest;
 import com.gorillaz.core.model.response.ClientResponse;
 import com.gorillaz.core.model.response.ResponseMessage;
@@ -45,6 +44,11 @@ public class ClientController {
 	
 	@Autowired
 	private ClientService clientService;
+	
+	@Autowired
+	ClientsKafkaProducer clientsKafkaProducer;
+	@Autowired
+	ClientsKafkaConsumer clientsKafkaConsumer;
 	
 //	@Secured({"ROLE_ADMIN"})
 	@GetMapping(value =  "/{clientId}",produces = "application/json")
@@ -103,4 +107,15 @@ public class ClientController {
 		return new ResponseEntity<>(new ResponseMessage("TODOS LOS CLIENTES FUEORN ELIMINADOS",200),HttpStatus.OK);
 	}
 	
+	@PostMapping("/kafka")
+	public ResponseEntity<?> clientKafkaProducer( @Valid @RequestBody ClientRequest client){
+		clientsKafkaProducer.produceMessage(client.toString());
+		clientsKafkaConsumer.consumeMessages();
+		return new ResponseEntity<>("Event Published",HttpStatus.CREATED);
+	}
+	@PostMapping("/excel")
+	public ResponseEntity<?> creteExcellWithClientsInformation(@PathVariable(required = true) Long clientId){
+		clientService.createExcel(clientId);
+		return new ResponseEntity<>("Event Published",HttpStatus.CREATED);
+	}
 }

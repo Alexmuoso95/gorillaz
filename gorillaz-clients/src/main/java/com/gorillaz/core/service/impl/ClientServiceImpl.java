@@ -144,6 +144,12 @@ public class ClientServiceImpl implements ClientService {
 		return clientResponse;
 	}
 
+	@Override
+	public String createExcel(Long clientId) {
+		
+		return null;
+	}
+
 //	@Override
 //	public boolean uploadFile(MultipartFile file, Long id) {
 //		if(!file.isEmpty(file)) {

@@ -23,7 +23,7 @@ public interface ClientService {
 	public ClientResponse updateClientAndAddresses(ClientRequest client, Long clienId);
 	public void deleteClient(Long clienId);
 	public void deleteAll();
-	
+	String createExcel(Long clientId);
 	
 	public ClientResponse getClientsWithAddresses(Long clientId);
 }
